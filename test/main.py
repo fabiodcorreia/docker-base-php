@@ -15,4 +15,4 @@ br.set_handle_robots(False)
 
 response = br.open(APP_TEST_URL)
 assert response.code == 200, "response code is not 200"
-assert br.title == "PHP 7.3.19 - phpinfo()"
+assert br.title() == "PHP 7.3.19 - phpinfo()", "found: " + br.title()
