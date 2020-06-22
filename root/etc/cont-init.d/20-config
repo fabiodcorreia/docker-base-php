@@ -20,11 +20,18 @@ mkdir -p \
 	printf "; Edit this file to override php.ini directives and restart the container\\n\\ndate.timezone = %s\\n" "$TZ" > /config/php/php-local.ini
 # copy user php-local.ini to image
 cp /config/php/php-local.ini /etc/php7/conf.d/php-local.ini
-#fix php-fpm log location
+#fix php-fpm log to stderr
 sed -i "s#;error_log = log/php7/error.log.*#error_log = /dev/stderr#g" /etc/php7/php-fpm.conf
+#fix php-fpm PATH
+echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf
 #fix php-fpm user
 sed -i "s#user = nobody.*#user = abc#g" /etc/php7/php-fpm.d/www.conf
 sed -i "s#group = nobody.*#group = abc#g" /etc/php7/php-fpm.d/www.conf
+#fix php-fpm clean_env to allow access to ENVs
+sed -i 's/;clear_env = no/clear_env = no/g' /etc/php7/php-fpm.d/www.conf
+#fix php-fpm to have a static single worker
+sed -i 's/pm = dynamic/pm = static/' /etc/php7/php-fpm.d/www.conf
+sed -i 's/pm.max_children = 5/pm.max_children = 1/' /etc/php7/php-fpm.d/www.conf
 # create override for www.conf if it doesn't exist
 [[ ! -f /config/php/www2.conf ]] && \
 	printf "; Edit this file to override www.conf and php-fpm.conf directives and restart the container\\n\\n; Pool name\\n[www]\\n\\n" > /config/php/www2.conf
