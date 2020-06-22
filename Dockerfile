@@ -8,7 +8,9 @@ LABEL maintainer="fabiodcorreia"
 
 RUN \
   echo "**** install runtime packages ****" && \
-    apk add --no-cache nginx \
+    apk add --no-cache \
+      curl \
+      nginx \
       php7 \
       php7-fileinfo \
       php7-fpm  \
