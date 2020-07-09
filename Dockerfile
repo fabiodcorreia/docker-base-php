@@ -1,4 +1,4 @@
-FROM fabiodcorreia/base-alpine:1.0.0
+FROM fabiodcorreia/base-alpine:1.0.1
 
 # set version label
 ARG BUILD_DATE
@@ -33,7 +33,8 @@ RUN \
 # add local files
 COPY root/ /
 
-# ports and volumes
+# ports
 EXPOSE 80
 
+# volumes
 VOLUME /config
