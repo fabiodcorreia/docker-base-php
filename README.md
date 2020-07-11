@@ -73,3 +73,4 @@ The `arch` can be one of the supported architectures described below.
 | PUID                | Set the UserID - [Details](https://github.com/fabiodcorreia/docker-base-alpine#userid--groupid) |
 | PGID                | Set the GroupID - [Details](https://github.com/fabiodcorreia/docker-base-alpine#userid--groupid) |
 | TZ                  | Set the system timezone - [Options](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) |
+| HTTP_TRACE          | Enable HTTP trace Log (default: false) |

@@ -38,6 +38,16 @@ sed -i 's/pm.max_children = 5/pm.max_children = 1/' /etc/php7/php-fpm.d/www.conf
 # copy user www2.conf to image
 cp /config/php/www2.conf /etc/php7/php-fpm.d/www2.conf
 
+# enable/disable http trace logs
+
+if [[ -z "$HTTP_TRACE" || "$HTTP_TRACE" == "false" ]]; then
+  echo "**** Disable HTTP Trace ****"
+  sed -i 's%access_log /dev/stdout;%access_log off;%g' /config/nginx/nginx.conf;
+else
+  echo "**** Enable HTTP Trace ****"
+  sed -i 's%access_log off;%access_log /dev/stdout;%g' /config/nginx/nginx.conf;
+fi
+
 # permissions
 chown -R abc:abc \
 	/config \
