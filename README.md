@@ -36,7 +36,7 @@ This image follows the [Semantic Versioning](https://semver.org/) pattern.
 | Version        | 1.0      | 1.1      | 2.0     |
 | :----:         | ---      | ---      | ----    |
 | Base Image     | 1.x.x    | 1.x.x    | 2.x.x   |
-| PHP            | 7.3.19   | 7.3.20   | 7.3.19  |
+| PHP            | 7.3.19   | 7.4.10   | 7.3.19  |
 
 When Base Image gets upgraded the major version is incremented, when PHP gets upgraded the minor version is incremented.
 
